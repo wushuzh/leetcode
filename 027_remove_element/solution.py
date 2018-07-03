@@ -16,3 +16,15 @@ def rm_elem_2_points(nums: List[int], val: int) -> int:
             i += 1
         j += 1
     return i
+
+
+def rm_elem_swap(nums: List[int], val: int) -> int:
+    i = 0
+    n = len(nums)
+    while i < n:
+        if (nums[i] == val):
+            nums[i] = nums[n-1]
+            n -= 1
+        else:
+            i += 1
+    return n

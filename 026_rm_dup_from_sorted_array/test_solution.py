@@ -1,4 +1,5 @@
 from typing import List
+from random import randint
 
 
 def rm_duplicates(nums: List[int]) -> int:
@@ -35,3 +36,15 @@ def test_dups():
     a = [1, 2, 2, 3, 4, 4, 5]
     assert rm_duplicates(a) == 5
     assert a[:5] == [1, 2, 3, 4, 5]
+
+
+def test_multi(random_chk=1000):
+    for _ in range(random_chk):  # test how many times
+        a = []
+        no_dup = randint(2, 100)
+        for i in range(no_dup):  # no dup array length
+            repeat = randint(1, 5)
+            [a.append(i) for _ in range(repeat)]
+        assert rm_duplicates(a) == no_dup
+        assert a[:no_dup] == list(range(no_dup))
+    # TODO: get the branchmark of a function

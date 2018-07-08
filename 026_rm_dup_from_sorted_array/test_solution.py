@@ -2,12 +2,12 @@ from typing import List
 
 
 def rm_duplicates(nums: List[int]) -> int:
-    if len(nums) == 0:
-        return 0
+    if len(nums) <= 1:
+        return len(nums)
     i = 0
     j = 1
     while j < len(nums):
-        if nums[i] != nums[j]:
+        if nums[j] > nums[i]:
             i += 1
             nums[i] = nums[j]
         j += 1

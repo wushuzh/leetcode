@@ -1,18 +1,5 @@
-from typing import List
 from random import randint
-
-
-def rm_duplicates(nums: List[int]) -> int:
-    if len(nums) <= 1:
-        return len(nums)
-    i = 0
-    j = 1
-    while j < len(nums):
-        if nums[j] > nums[i]:
-            i += 1
-            nums[i] = nums[j]
-        j += 1
-    return i + 1
+from solution import rm_duplicates
 
 
 def test_empty():

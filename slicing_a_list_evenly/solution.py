@@ -4,6 +4,6 @@ def chunk(xs, n):
     L = len(xs)
     assert 0 < n <= L
     s, r = divmod(L, n)
-    chunks = [xs[p:p+s] for p in range(0, L, s)]
-    chunks[n-1:] = [xs[-r-s:]]
-    return chunks
+    t = s + 1
+    return ([xs[p:p+t] for p in range(0, r*t, t)] +
+            [xs[p:p+s] for p in range(r*t, L, s)])

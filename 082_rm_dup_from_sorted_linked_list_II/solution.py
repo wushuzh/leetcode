@@ -1,10 +1,6 @@
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
-    def __str__(self):
-        return 'ListNode(' + str(self.val) + ')'
+import sys, os
+sys.path.insert(0, os.path.abspath('..'))
+from common.linkedlist import ListNode
 
 
 def deleteDuplicates(head: ListNode) -> ListNode:

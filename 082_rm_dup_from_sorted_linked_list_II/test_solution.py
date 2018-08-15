@@ -1,25 +1,10 @@
 from random import randint
-from functools import reduce
-from solution import ListNode, deleteDuplicates
 
-# TODO: remove dup code with 083
-def cons(v, tail):
-    head = ListNode(v)
-    head.next = tail
-    return head
-
-
-def mklist(*args):
-    return reduce(lambda tail, v: cons(v, tail), reversed(args), None)
-
-
-def convert_array(head):
-    a = []
-    succ = head
-    while succ:
-        a.append(succ.val)
-        succ = succ.next
-    return a
+import sys
+import os
+sys.path.insert(0, os.path.abspath('..'))
+from common.linkedlist import ListNode, convert_array, mklist
+from solution import deleteDuplicates
 
 
 def test_none():

@@ -9,6 +9,9 @@ class ListNode:
     def __str__(self):
         return 'ListNode(' + str(self.val) + ')'
 
+    def __eq__(self, other):
+        return (car(self) == car(other)) and (cdr(self) == cdr(other))
+
 
 def printSSL(lst):
     if lst:
@@ -22,6 +25,15 @@ def cons(v, tail):
     head = ListNode(v)
     head.next = tail
     return head
+
+
+def car(l):
+    print(l.val)
+    return l.val
+
+
+def cdr(l):
+    return l.next
 
 
 def mklist(*args):

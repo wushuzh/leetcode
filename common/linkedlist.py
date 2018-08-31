@@ -12,19 +12,25 @@ class ListNode:
     def __eq__(self, other):
         return (car(self) == car(other)) and (cdr(self) == cdr(other))
 
-    def __str__(self):
-        nodes = []
+    def __iter__(self):
+        ''' enable iter for ListNode, the associated functions, e.g., map
+        shall only be used when debugging i.e., print purpose or testing
+        solution should not use this addon feature
+        '''
         curr = self
         while curr:
-            nodes.append(repr(curr))
+            yield curr
             curr = curr.next
-        nodes.append('None')
-        return ' -> '.join(nodes)
+        else:
+            yield None
+
+    def __str__(self):
+        return ' -> '.join(map(repr, self))
 
 
 def printSSL(lst):
     if lst:
-        print("{} -> ".format(lst), end="")
+        print("{} -> ".format(repr(lst)), end="")
         printSSL(lst.next)
     else:
         print('None')

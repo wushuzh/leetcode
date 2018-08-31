@@ -19,3 +19,14 @@ def add_two_numbers_v1(l1: ListNode, l2: ListNode) -> ListNode:
         n.next = ListNode(val)
         n = n.next
     return dummy.next
+
+
+def add_two_numbers_v2(*afewlls):
+    dummy = n = ListNode("dummy")
+    carry = 0
+    while afewlls or carry:
+        carry += sum(a.val for a in afewlls)
+        carry, val = divmod(carry, 10)
+        n.next = n = ListNode(val)
+        afewlls = [a.next for a in afewlls if a.next]
+    return dummy.next

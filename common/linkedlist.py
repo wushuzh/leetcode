@@ -6,11 +6,20 @@ class ListNode:
         self.val = x
         self.next = None
 
-    def __str__(self):
+    def __repr__(self):
         return 'ListNode(' + str(self.val) + ')'
 
     def __eq__(self, other):
         return (car(self) == car(other)) and (cdr(self) == cdr(other))
+
+    def __str__(self):
+        nodes = []
+        curr = self
+        while curr:
+            nodes.append(repr(curr))
+            curr = curr.next
+        nodes.append('None')
+        return ' -> '.join(nodes)
 
 
 def printSSL(lst):
@@ -28,7 +37,6 @@ def cons(v, tail):
 
 
 def car(l):
-    print(l.val)
     return l.val
 
 

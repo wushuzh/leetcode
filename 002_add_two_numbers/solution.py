@@ -30,3 +30,15 @@ def add_two_numbers_v2(*afewlls):
         n.next = n = ListNode(val)
         afewlls = [a.next for a in afewlls if a.next]
     return dummy.next
+
+
+def add_two_numbers_v3(l1, l2):
+    def toint(node):
+        return node.val + 10 * toint(node.next) if node else 0
+
+    def tolist(n):
+        node = ListNode(n % 10)
+        if n > 9:
+            node.next = tolist(n // 10)
+        return node
+    return tolist(toint(l1) + toint(l2))

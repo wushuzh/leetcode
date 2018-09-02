@@ -1,7 +1,7 @@
+from collections import deque
 import sys
 import os
 
-from collections import deque
 sys.path.insert(0, os.path.abspath('..'))
 from common.linkedlist import ListNode
 

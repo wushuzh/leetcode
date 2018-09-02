@@ -44,3 +44,35 @@ def add_two_numbers_v1(l1: ListNode, l2: ListNode) -> ListNode:
             p = q
 
     return h if h.val else h.next
+
+
+def add_two_numbers_v2(l1: ListNode, l2:ListNode) -> ListNode:
+    def list_to_stack(l: ListNode):
+        stack = []
+        while l:
+            stack.append(l.val)
+            l = l.next
+        return stack
+
+    def add_helper(s1, s2):
+        sum_stack = []
+        carry = 0
+        while s1 or s2 or carry:
+            num1 = s1.pop() if s1 else 0
+            num2 = s2.pop() if s2 else 0
+            total = num1 + num2 + carry
+            carry, remain = divmod(total, 10)
+            sum_stack.append(remain)
+        return sum_stack
+
+    def stack_to_list(s):
+        cur = head = ListNode(0)
+        while s:
+            cur.next = ListNode(s.pop())
+            cur = cur.next
+        return head.next
+
+    s1 = list_to_stack(l1)
+    s2 = list_to_stack(l2)
+    s3 = add_helper(s1, s2)
+    return stack_to_list(s3)

@@ -1,5 +1,7 @@
 import sys
 import os
+
+from collections import deque
 sys.path.insert(0, os.path.abspath('..'))
 from common.linkedlist import ListNode
 
@@ -46,16 +48,18 @@ def add_two_numbers_v1(l1: ListNode, l2: ListNode) -> ListNode:
     return h if h.val else h.next
 
 
-def add_two_numbers_v2(l1: ListNode, l2:ListNode) -> ListNode:
+def add_two_numbers_v2(l1: ListNode, l2: ListNode) -> ListNode:
     def list_to_stack(l: ListNode):
-        stack = []
+        # stack = []
+        stack = deque()
         while l:
             stack.append(l.val)
             l = l.next
         return stack
 
     def add_helper(s1, s2):
-        sum_stack = []
+        # sum_stack = []
+        sum_stack = deque()
         carry = 0
         while s1 or s2 or carry:
             num1 = s1.pop() if s1 else 0

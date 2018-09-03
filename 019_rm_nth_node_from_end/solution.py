@@ -15,3 +15,15 @@ def rm_nth_from_end_v1(head: ListNode, n: int):
         slow = slow.next
     slow.next = slow.next.next
     return head
+
+
+def rm_nth_from_end_v2(head: ListNode, n: int):
+    def index(node):
+        if not node:
+            return 0
+        i = index(node.next) + 1
+        if i > n:
+            node.next.val = node.val
+        return i
+    index(head)
+    return head.next

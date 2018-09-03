@@ -6,7 +6,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 from common.linkedlist import ListNode, mklist, convert_array
-from solution import rm_nth_from_end_v1
+from solution import rm_nth_from_end_v1, rm_nth_from_end_v2
 
 
 @st.composite
@@ -22,11 +22,16 @@ def test_random(xs_n):
     xs, n = xs_n
 
     head1 = mklist(*xs)
+    head2 = mklist(*xs)
 
     r1 = rm_nth_from_end_v1(head1, n)
+    r2 = rm_nth_from_end_v2(head2, n)
 
+    xs_dup = xs[:]
     del xs[-n]
     assert convert_array(r1) == xs
 
     del xs_dup[-n]
     assert r1 == mklist(*xs_dup)
+
+    assert r1 == r2

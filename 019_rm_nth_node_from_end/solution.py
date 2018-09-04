@@ -1,3 +1,4 @@
+from typing import Tuple
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
@@ -27,3 +28,12 @@ def rm_nth_from_end_v2(head: ListNode, n: int):
         return i
     index(head)
     return head.next
+
+
+def rm_nth_from_end_v3(head: ListNode, n: int) -> ListNode:
+    def remove(head: ListNode) -> Tuple[int, ListNode]:
+        if not head:
+            return 0, head
+        i, head.next = remove(head.next)
+        return i+1, (head, head.next)[i+1 == n]
+    return remove(head)[1]

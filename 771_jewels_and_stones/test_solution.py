@@ -3,7 +3,7 @@ import hypothesis as ht
 import hypothesis.strategies as st
 import random
 
-from solution import num_jewels_in_stones_v1
+from solution import *
 
 # totally 100 distinct chars
 
@@ -39,6 +39,7 @@ def jewels_stones_jcount_data(draw):
                 max_codepoint=min_prt_ascii_codepoint + 50),
             max_size=50))
     count = len(js)
+    distinct_js = set(js)
     # stones are generated from another not-overlapping charset
     plain_stones = draw(
         st.lists(
@@ -49,10 +50,20 @@ def jewels_stones_jcount_data(draw):
             max_size=50 - count))
     mix = js + plain_stones
     random.shuffle(mix)
-    return (''.join(js), ''.join(mix), count)
+    return (''.join(distinct_js), ''.join(mix), count)
 
 
 @ht.given(jsc=jewels_stones_jcount_data())
 def test_with_ascii(jsc):
     js, ss, c = jsc
     assert num_jewels_in_stones_v1(js, ss) == c
+    assert num_jewels_in_stones_v2(js, ss) == c
+    assert num_jewels_in_stones_v3(js, ss) == c
+    assert num_jewels_in_stones_v4(js, ss) == c
+
+
+def test_given_dup_jewels():
+    assert num_jewels_in_stones_v1('00', '0') == 1
+    assert num_jewels_in_stones_v2('00', '0') == 1
+    assert num_jewels_in_stones_v3('00', '0') == 2
+    assert num_jewels_in_stones_v4('00', '0') == 2

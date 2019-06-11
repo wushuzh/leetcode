@@ -14,5 +14,4 @@ def longest_consecutive_by_uf(nums: List[int]) -> int:
         #   otherwise may cause union operations is missing
         if valToIdx.get(v + 1) is not None:
             uf.union(valToIdx[v], valToIdx[v + 1])
-            print("union %s and %s" % (valToIdx[v], valToIdx[v + 1]))
     return uf.largest_one_union()

@@ -13,8 +13,12 @@ class UnionFind():
         proot = self.find_root(p)
         qroot = self.find_root(q)
         if proot != qroot:
-            self.parent[proot] = qroot
-            self.nodesNum[qroot] += self.nodesNum[proot]
+            if self.nodesNum[proot] > self.nodesNum[qroot]:
+                self.parent[proot] = qroot
+                self.nodesNum[qroot] += self.nodesNum[proot]
+            else:
+                self.parent[qroot] = proot
+                self.nodesNum[proot] += self.nodesNum[qroot]
 
     def largest_one_union(self):
         return max(self.nodesNum)
